@@ -1,0 +1,38 @@
+{
+  "name": "@local/dsh-pure-chat",
+  "version": "1.1.0",
+  "type": "module",
+  "description": "Pure chat: a selectable DSH agent preset that sends the conversation straight to the model with web search and fetch, but without a system prompt, file or shell tools, skills, or subagents.",
+  "license": "MIT",
+  "author": "EonCosmos",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/EonCosmos/dsh-pure-chat.git"
+  },
+  "keywords": [
+    "dsh-plugin",
+    "deepseek-harness",
+    "agent-preset",
+    "chat",
+    "web-search"
+  ],
+  "exports": {
+    ".": "./index.js",
+    "./locale/*.json": "./locale/*.json",
+    "./icon": "./icon.svg"
+  },
+  "files": [
+    "index.js",
+    "cordis.patch.yml",
+    "README.md",
+    "README.zh.md",
+    "LICENSE",
+    "locale/*.json",
+    "icon.svg"
+  ],
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  }
+}
