@@ -13,6 +13,9 @@
  * plugin installed later, an HMR reload) cannot leak into its sessions.
  */
 
+import { registerClearContext } from './lib/clear-context.js'
+import { registerWriteFile } from './lib/write-file.js'
+
 export const name = 'pure-chat'
 
 export const inject = ['tools']
@@ -53,7 +56,7 @@ function sameNames(left, right) {
  * Deny the host-global tool names for this preset's scope.
  * @param {import('@deepseek-ai/cordis').Context} ctx - the preset composition scope.
  */
-export function apply(ctx) {
+function hideGlobalTools(ctx) {
   /** Global names the restriction currently held by this plugin denies. */
   let denied = []
   /** Lifts that restriction; replaced whenever the deny list changes. */
@@ -113,4 +116,15 @@ export function apply(ctx) {
       denied = []
     }
   }, 'pure-chat.hideGlobalTools()')
+}
+
+/**
+ * The preset's whole contribution: hide the host-global tools, mount the
+ * `write_file` tool, and register the `/clear-context` command.
+ * @param {import('@deepseek-ai/cordis').Context} ctx - the preset composition scope.
+ */
+export function apply(ctx) {
+  hideGlobalTools(ctx)
+  registerWriteFile(ctx)
+  registerClearContext(ctx)
 }

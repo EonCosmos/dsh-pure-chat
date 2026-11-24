@@ -1,8 +1,10 @@
 # Pure chat: one selectable agent preset whose requests carry the conversation
-# plus only the two read-only web tools. The empty complete persona removes the
-# whole system prompt (Harness identity, agent instructions, tool guidance,
-# runtime context); the local plugin hides every host-global tool that the
-# preset would otherwise inherit, while leaving the preset's web tools visible.
+# plus three read-only/write-one-file tools. The empty complete persona removes
+# the whole system prompt (Harness identity, agent instructions, tool guidance,
+# runtime context); the bundle's own plugin hides every host-global tool that
+# the preset would otherwise inherit, mounts `write_file`, and registers the
+# `/clear-context` command that resets the model's context without touching the
+# transcript.
 #
 # `order: 5` sorts after the shipped presets (standard 1, ptc 2, minimal 3,
 # cordis 4) instead of tying with one of them. Preset display metadata is not
@@ -13,7 +15,7 @@
       config:
         id: pure-chat
         name: Pure chat (纯对话)
-        description: 直接和模型对话，可联网搜索、读取网页；没有系统提示词，也没有文件、命令、技能或子代理工具。 / Plain chat with web search and fetch; no system prompt and no file, shell, skill, or subagent tools.
+        description: 直接和模型对话，可联网搜索、读取网页、导出文件；没有系统提示词，也没有文件、命令、技能或子代理工具。 / Plain chat with web search, fetch and file export; no system prompt and no file, shell, skill, or subagent tools.
         order: 5
         plugins:
           - id: persona
@@ -27,5 +29,5 @@
             config:
               search: true
               fetch: true
-          - id: no-global-tools
+          - id: pure-chat
             name: 'dsh-pure-chat'

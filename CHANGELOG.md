@@ -1,5 +1,21 @@
 # Changelog
 
+## 1.3.0
+
+- Added the `write_file` tool: save text as `txt`, `md`, `doc` (RTF), `xls`
+  (SpreadsheetML) or `pdf`. Files land inside the session working directory, a
+  path that escapes it is refused, and PDF export renders through the DSH Office
+  component so CJK text keeps its font.
+- Added the clear-context control left of the composer's send button, with a
+  confirmation dialog. It resets the model's context by replacing the session's
+  conversational surface with one fresh message; the log, the transcript and the
+  stored session are untouched, and the operation is also exposed as the
+  `/clear-context` command. It refuses while a turn is running.
+- The preset row is now named after the plugin (`pure-chat`) instead of after its
+  first behavior (`no-global-tools`).
+- Tests cover the four document builders, the write tool's path boundary and
+  Office conversion path, and the surface replacement of the clear command.
+
 ## 1.2.0
 
 - Renamed the package from `@local/dsh-pure-chat` to `dsh-pure-chat`, matching the
