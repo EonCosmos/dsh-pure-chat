@@ -4,7 +4,8 @@ import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { test } from 'node:test'
 
-import { apply } from '../index.js'
+import { apply } from '../preset.js'
+import { apply as hostApply } from '../index.js'
 import { buildRtf, buildXls, escapeRtf, formatOfPath, FORMATS } from '../lib/documents.js'
 import { clearContext, COMMAND_NAME } from '../lib/clear-context.js'
 import { resolveTarget } from '../lib/write-file.js'
@@ -175,6 +176,13 @@ test('reports a later failure without breaking the registry that changed', () =>
   assert.match(state.log[0], /could not hide host-global tools/)
   // The previous restriction stays in place: a failed sync must not widen access.
   assert.deepEqual(denied(), ['read_file'])
+})
+
+// --- bundle host half -------------------------------------------------------
+
+test('the package host entry is a no-op row that exists for the client bundle', () => {
+  assert.equal(typeof hostApply, 'function')
+  assert.doesNotThrow(() => hostApply())
 })
 
 // --- write_file -------------------------------------------------------------

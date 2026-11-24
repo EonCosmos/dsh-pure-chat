@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.3.1
+
+- Fixed the clear-context control never appearing: the Web client serves a
+  package's `dsh.client` bundle only for a profile-tree entry named after that
+  package, and a row mounted inside a preset's own tree is never scanned. The
+  patch now inserts `pure-chat-host` (`dsh-pure-chat`, a no-op host row) beside
+  the preset, and the preset mounts the scoped half as `dsh-pure-chat/preset`.
+- After installing or updating, reload the page once so the client bundle is
+  part of the boot manifest.
+
 ## 1.3.0
 
 - Added the `write_file` tool: save text as `txt`, `md`, `doc` (RTF), `xls`

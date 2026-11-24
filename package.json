@@ -1,6 +1,6 @@
 {
   "name": "dsh-pure-chat",
-  "version": "1.3.0",
+  "version": "1.3.1",
   "type": "module",
   "description": "Pure chat: a selectable DSH agent preset that sends the conversation straight to the model, plus a file-writing tool (txt, md, doc, xls, pdf) and a clear-context control, with web search and fetch but without a system prompt, file or shell tools, skills, or subagents.",
   "license": "MIT",
@@ -22,12 +22,14 @@
   ],
   "exports": {
     ".": "./index.js",
+    "./preset": "./preset.js",
     "./client": "./client.js",
     "./locale/*.json": "./locale/*.json",
     "./icon": "./icon.svg"
   },
   "files": [
     "index.js",
+    "preset.js",
     "client.js",
     "lib",
     "cordis.patch.yml",
