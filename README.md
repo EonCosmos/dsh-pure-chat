@@ -14,7 +14,7 @@ read-only network tools so the model can look things up:
 
 1. Create a new session.
 2. In the preset control above the composer (the “New Session” row), choose
-   **纯对话 / Pure chat**.
+   **Pure chat (纯对话)**.
 3. Ask your question. If it needs current information, the model calls
    `web_search` (and `web_fetch` for a specific page) and answers with the
    results.
@@ -37,6 +37,22 @@ any subagent identity. Every host-global tool — including the Agent Teams tool
 mounted at host scope — is hidden by the bundled plugin; the preset mounts only
 the two web tools.
 
+## How it hides tools
+
+The preset mounts its two web tools in its own scope and denies every
+host-global tool by name (`ctx.tools.restrict({ deny })`). Scoped registrations
+are exempt from that mask, so the web tools stay visible; `allow: []` is not an
+alternative, because the registry rejects an empty filter.
+
+- The deny list is **re-derived on every `tools/change`**, not snapshotted at
+  activation, so a global tool registered later — a plugin installed afterwards,
+  an HMR reload — is hidden too.
+- `run_code` is never named in a deny list because the registry reserves it, and
+  this preset mounts no PTC executor, so it cannot be called here either.
+- If the registry refuses the restriction, the preset **fails to activate**
+  instead of silently starting as an agent that owns every tool. The row then
+  carries its diagnostic in Plugins.
+
 ## Limitations
 
 - **Tool use is still agent-loop work.** Web lookups happen as model tool calls,
@@ -52,6 +68,11 @@ the two web tools.
 - The preset is a composition, not a security boundary: it controls what the
   model is told and what it can call, not who may install plugins.
 
+## Requirements
+
+- DSH `>= 0.2.2-rc.5`, declared as `engines.dsh`.
+- A configured search provider for `web_search`; `web_fetch` needs none.
+
 ## Install
 
 From GitHub:
@@ -62,3 +83,19 @@ dsh plugin --profile <profile> add github:EonCosmos/dsh-pure-chat
 
 For local development, use **Plugins → Add plugin → this directory**, or
 `plugin_manager` with `action: install_bundle` and this package directory.
+
+## Upgrade
+
+A Git install cannot use the one-click update action; reinstall with the install
+command above. The preset id stays `pure-chat`, so sessions that already
+selected it keep working.
+
+Version 1.2.0 renamed the package from `@local/dsh-pure-chat` to
+`dsh-pure-chat`. Remove the old bundle first (**Plugins → Remove**), then
+install, or the profile keeps both rows and two declarations of the same preset.
+
+## Tests
+
+```sh
+npm test
+```

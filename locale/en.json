@@ -1,6 +1,6 @@
 {
   "meta": {
     "title": "Pure chat",
-    "description": "Adds a selectable agent preset that sends your conversation straight to the model and lets it search the web with web_search and web_fetch. It carries no system prompt and mounts no file, shell, terminal, skill, subagent, team, or goal tools. Create a new session, choose “纯对话 / Pure chat” in the preset control, then send your first message. The model still receives the one working-directory runtime note DSH requires, the two web tools' brief descriptions stand in for the suppressed tool guidance, and long conversations are not compacted."
+    "description": "Adds a selectable agent preset that sends your conversation straight to the model and lets it search the web with web_search and web_fetch. It carries no system prompt and mounts no file, shell, terminal, skill, subagent, team, or goal tools, and it keeps hiding host-global tools that register later. Create a new session, choose “Pure chat (纯对话)” in the preset control, then send your first message. The model still receives the one working-directory runtime note DSH requires, the two web tools' brief descriptions stand in for the suppressed tool guidance, long conversations are not compacted, and a preset that cannot hide a host-global tool refuses to activate instead of starting with it."
   }
 }

@@ -3,14 +3,18 @@
 # whole system prompt (Harness identity, agent instructions, tool guidance,
 # runtime context); the local plugin hides every host-global tool that the
 # preset would otherwise inherit, while leaving the preset's web tools visible.
+#
+# `order: 5` sorts after the shipped presets (standard 1, ptc 2, minimal 3,
+# cordis 4) instead of tying with one of them. Preset display metadata is not
+# localized by DSH, so the name carries both languages in one string.
 - insert:
     - id: preset-pure-chat
       name: '@deepseek-ai/dsh-agent-preset'
       config:
         id: pure-chat
-        name: 纯对话
-        description: 直接和模型对话，可以联网搜索和读取网页；没有系统提示词，也没有文件、命令、技能或子代理工具。
-        order: 2
+        name: Pure chat (纯对话)
+        description: 直接和模型对话，可联网搜索、读取网页；没有系统提示词，也没有文件、命令、技能或子代理工具。 / Plain chat with web search and fetch; no system prompt and no file, shell, skill, or subagent tools.
+        order: 5
         plugins:
           - id: persona
             name: '@deepseek-ai/dsh-persona'
@@ -24,4 +28,4 @@
               search: true
               fetch: true
           - id: no-global-tools
-            name: '@local/dsh-pure-chat'
+            name: 'dsh-pure-chat'
