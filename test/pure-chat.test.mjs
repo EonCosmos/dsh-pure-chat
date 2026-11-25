@@ -6,6 +6,7 @@ import { test } from 'node:test'
 
 import { apply } from '../preset.js'
 import { apply as hostApply } from '../index.js'
+import { PRESET_TEXT, presetLanguage, presetText } from '../lib/preset-text.js'
 import { buildRtf, buildXls, escapeRtf, formatOfPath, FORMATS } from '../lib/documents.js'
 import { clearContext, COMMAND_NAME } from '../lib/clear-context.js'
 import { resolveTarget } from '../lib/write-file.js'
@@ -180,9 +181,55 @@ test('reports a later failure without breaking the registry that changed', () =>
 
 // --- bundle host half -------------------------------------------------------
 
-test('the package host entry is a no-op row that exists for the client bundle', () => {
-  assert.equal(typeof hostApply, 'function')
-  assert.doesNotThrow(() => hostApply())
+test('preset copy is single-language in both languages', () => {
+  assert.equal(PRESET_TEXT.zh.name, '纯对话')
+  assert.equal(PRESET_TEXT.en.name, 'Pure chat')
+  assert.equal(/[A-Za-z]/.test(PRESET_TEXT.zh.name), false, 'the Chinese label carries no English')
+  assert.equal(/[\u4e00-\u9fff]/.test(PRESET_TEXT.en.name), false, 'the English label carries no Chinese')
+  assert.equal(/[A-Za-z]/.test(PRESET_TEXT.zh.description), false, 'the Chinese description carries no English')
+  assert.equal(/[\u4e00-\u9fff]/.test(PRESET_TEXT.en.description), false, 'the English description carries no Chinese')
+  assert.equal(presetText('zh').name, '纯对话')
+  assert.equal(presetText('fr').name, 'Pure chat', 'an unknown language falls back to English')
+})
+
+test('an explicit DSH language setting decides the preset copy', () => {
+  const withPreference = preference => ({
+    get: name => (name === 'settings'
+      ? { describe: () => [{ value: { preference } }] }
+      : undefined),
+  })
+
+  assert.equal(presetLanguage(withPreference('zh')), 'zh')
+  assert.equal(presetLanguage(withPreference('zh-CN')), 'zh')
+  assert.equal(presetLanguage(withPreference('en')), 'en')
+  // A non-language `preference` (a theme mode) must not be mistaken for a locale.
+  assert.ok(['zh', 'en'].includes(presetLanguage(withPreference('system'))))
+})
+
+test('the host row registers the preset with single-language copy', async () => {
+  let registered
+  const ctx = {
+    get: () => undefined,
+    agentPresets: {
+      async register(definition) {
+        registered = definition
+        return () => {}
+      },
+    },
+    effect: fn => fn(),
+  }
+
+  await hostApply(ctx)
+
+  assert.equal(registered.id, 'pure-chat')
+  assert.equal(registered.order, 5)
+  const language = registered.name === '纯对话' ? 'zh' : 'en'
+  assert.equal(registered.name, PRESET_TEXT[language].name)
+  assert.equal(registered.description, PRESET_TEXT[language].description)
+  const names = registered.plugins.map(plugin => plugin.name)
+  assert.ok(names.includes('@deepseek-ai/dsh-persona'), 'persona stays in the composition')
+  assert.ok(names.includes('@deepseek-ai/dsh-tool-web'), 'web tools stay in the composition')
+  assert.ok(names.includes('dsh-pure-chat/preset'), 'the scoped half stays in the composition')
 })
 
 // --- write_file -------------------------------------------------------------

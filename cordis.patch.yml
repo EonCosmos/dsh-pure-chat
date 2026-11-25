@@ -1,40 +1,18 @@
-# Pure chat: one selectable agent preset whose requests carry the conversation
-# plus three read-only/write-one-file tools. The empty complete persona removes
-# the whole system prompt (Harness identity, agent instructions, tool guidance,
-# runtime context); the bundle's own preset plugin hides every host-global tool
-# that the preset would otherwise inherit, mounts `write_file`, and registers
-# the `/clear-context` command that resets the model's context without touching
-# the transcript.
+# Pure chat: one agent preset plus the package's own top-level row.
 #
-# `pure-chat-host` is the package's own top-level row. The Web client serves a
-# package's `dsh.client` bundle only for a profile-tree entry named after that
-# package, and a row mounted inside a preset's own tree is never scanned — so
-# without this row the clear-context button never reaches the page.
+# `pure-chat-host` is the only Loader row this bundle inserts. It carries two
+# jobs: the Web client serves a package's `dsh.client` bundle only for a
+# profile-tree entry named after that package (so this row is what puts the
+# clear-context control into the page), and its plugin registers the `pure-chat`
+# preset with display text in the host language — DSH never translates
+# user-authored preset metadata, so a declaration here could only ever ship one
+# mixed or single-language label.
 #
-# `order: 5` sorts after the shipped presets (standard 1, ptc 2, minimal 3,
-# cordis 4) instead of tying with one of them. Preset display metadata is not
-# localized by DSH, so the name carries both languages in one string.
+# The preset composition itself lives in `index.js` (`./lib/preset-text.js` owns
+# the per-language copy): the empty complete persona removes the whole system
+# prompt, `@deepseek-ai/dsh-tool-web` mounts the two web tools, and
+# `dsh-pure-chat/preset` hides every host-global tool, mounts `write_file`, and
+# registers the `/clear-context` command.
 - insert:
     - id: pure-chat-host
       name: 'dsh-pure-chat'
-    - id: preset-pure-chat
-      name: '@deepseek-ai/dsh-agent-preset'
-      config:
-        id: pure-chat
-        name: Pure chat (纯对话)
-        description: 直接和模型对话，可联网搜索、读取网页、导出文件；没有系统提示词，也没有文件、命令、技能或子代理工具。 / Plain chat with web search, fetch and file export; no system prompt and no file, shell, skill, or subagent tools.
-        order: 5
-        plugins:
-          - id: persona
-            name: '@deepseek-ai/dsh-persona'
-            config:
-              prefix: ''
-              complete: true
-              includeRuntimeContext: false
-          - id: web
-            name: '@deepseek-ai/dsh-tool-web'
-            config:
-              search: true
-              fetch: true
-          - id: pure-chat
-            name: 'dsh-pure-chat/preset'

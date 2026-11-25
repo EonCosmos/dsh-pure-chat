@@ -10,7 +10,8 @@ what the model reads without touching the conversation you see.
 
 **Quick start**
 
-1. Create a session and choose **Pure chat (纯对话)** in the preset control.
+1. Create a session and choose **Pure chat** in the preset control (it reads
+   **纯对话** on a Chinese system).
 2. Ask anything. Add “查一下 …” if you want it to search the web.
 3. Say “export that as PDF / Excel / Word” to get a file, and use the button left
    of the send arrow when the context should start over.
@@ -25,6 +26,10 @@ dsh plugin --profile web add github:EonCosmos/dsh-pure-chat
 ## What it gives you
 
 ### A plain-chat preset
+
+The preset appears as **Pure chat**, or **纯对话** on a Chinese system: DSH does
+not translate user-authored preset metadata, so the plugin registers the preset
+with the copy of the host language instead of shipping a mixed label.
 
 A session that selects the preset sends only your messages, the replies, the
 tool calls they make, and one runtime note DSH requires to validate the session
@@ -94,10 +99,11 @@ The same operation is available as the `/clear-context` command.
   hidden too. If the registry refuses the mask, the preset fails to activate
   instead of silently starting with every tool.
 - **Client half.** The patch inserts the package's own host row
-  (`pure-chat-host`) beside the preset declaration. The Web client discovers a
-  package's `dsh.client` bundle only through a profile-tree entry named after that
-  package, so this row is what puts the clear-context control into the page; the
-  preset itself mounts the scoped half as `dsh-pure-chat/preset`.
+  (`pure-chat-host`), and that row's plugin also registers the preset with the
+  copy of the host language. The Web client discovers a package's `dsh.client`
+  bundle only through a profile-tree entry named after that package, so this row
+  is what puts the clear-context control into the page; the preset's composition
+  mounts the scoped half as `dsh-pure-chat/preset`.
 - **No compaction.** Nothing rewrites or summarises the conversation; use clear
   context or a new session when it grows too long.
 

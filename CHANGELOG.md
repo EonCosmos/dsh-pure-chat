@@ -1,5 +1,16 @@
 # Changelog
 
+## 1.4.1
+
+- The preset label follows the host language instead of mixing both: **纯对话**
+  on a Chinese system, **Pure chat** otherwise. DSH never translates
+  user-authored preset metadata (and Loader expressions do not apply to a preset
+  declaration, which is an entry group), so the host row now registers the
+  preset itself with the copy of the resolved language; the patch inserts no
+  preset declaration anymore.
+- The language comes from the explicit DSH language setting when the host
+  exposes one, otherwise from the host locale.
+
 ## 1.4.0
 
 - npm support: `repository.url` now uses the `git+https://` form npm expects,
