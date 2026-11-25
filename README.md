@@ -5,16 +5,19 @@ English | [中文](README.zh.md)
 A DSH bundle that adds one **agent preset** for plain conversation. The dialogue
 goes to the model as-is — no system prompt, no file, shell, terminal, skill,
 subagent, team, or goal tools — plus three tools of its own: web search, page
-fetch, and document export. A **clear context** control in the composer resets
-what the model reads without touching the conversation you see.
+fetch, and document export. The composer also carries an independent **clear
+context** control that resets what the model reads without touching the
+conversation you see.
 
 **Quick start**
 
 1. Create a session and choose **Pure chat** in the preset control (it reads
    **纯对话** on a Chinese system).
 2. Ask anything. Add “查一下 …” if you want it to search the web.
-3. Say “export that as PDF / Excel / Word” to get a file, and use the button left
-   of the send arrow when the context should start over.
+3. Say “export that as PDF / Excel / Word” to get a file.
+
+The preset offers four independent capabilities: plain chat, web access,
+document export, and clearing the context. Each one has its own section below.
 
 ```sh
 # install (npm, after the package is published)
@@ -23,7 +26,7 @@ dsh plugin --profile web add dsh-pure-chat
 dsh plugin --profile web add github:EonCosmos/dsh-pure-chat
 ```
 
-## What it gives you
+## Features
 
 ### A plain-chat preset
 
@@ -72,7 +75,10 @@ Rules worth knowing:
   reports a clear error instead of writing an unreadable PDF.
 - Content is capped at 4 MiB.
 
-### Clear context
+### Clear the context
+
+Clearing the context is its own capability, independent of the three tools: it
+changes what the model reads next, not what the tools can do.
 
 A small button sits left of the send arrow; it is shown only in sessions of this
 preset.

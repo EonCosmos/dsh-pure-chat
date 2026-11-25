@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.4.2
+
+- Documentation only: clear context is presented as its own capability instead of
+  the last step of a three-step quick start. The READMEs now open with four
+  independent capabilities, keep the quick start to chatting, searching and
+  export, and give clearing the context its own section; the Plugins detail
+  documents and the locale descriptions say the same.
+
 ## 1.4.1
 
 - The preset label follows the host language instead of mixing both: **纯对话**
