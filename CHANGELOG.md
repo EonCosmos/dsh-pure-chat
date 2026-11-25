@@ -1,5 +1,18 @@
 # Changelog
 
+## 1.4.0
+
+- npm support: `repository.url` now uses the `git+https://` form npm expects,
+  `publishConfig.access` is declared, and the package publishes with a clean
+  `npm publish --dry-run`. Install with `dsh plugin --profile <profile> add
+  dsh-pure-chat` once it is published; npm-installed bundles can be updated from
+  the Plugins page, unlike Git installs.
+- Rewrote both READMEs: a short summary and quick start first, then the preset,
+  the three tools, the clear-context behavior, how it works, and the limitations.
+- The Plugins detail page now shows a Chinese introduction for Chinese locales:
+  `meta.detail` points at `docs/DETAIL.zh.md` (English: `docs/DETAIL.md`), with a
+  text-free feature illustration.
+
 ## 1.3.1
 
 - Fixed the clear-context control never appearing: the Web client serves a
