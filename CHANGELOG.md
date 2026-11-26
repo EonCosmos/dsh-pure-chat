@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.5.3
+
+- Storefront screenshots are re-encoded in place: 1.16 MB → 533 KB (54% smaller)
+  with unchanged dimensions and PSNR 45–52 dB against the originals, so nothing
+  visible changes.
+
 ## 1.5.2
 
 - The package icon is now `icon.png` (180×180 PNG, transparent background),
