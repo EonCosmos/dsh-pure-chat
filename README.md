@@ -2,22 +2,21 @@
 
 English | [中文](README.zh.md)
 
-A DSH bundle that adds one **agent preset** for plain conversation. The dialogue
-goes to the model as-is — no system prompt, no file, shell, terminal, skill,
-subagent, team, or goal tools — plus three tools of its own: web search, page
-fetch, and document export. The composer also carries an independent **clear
-context** control that resets what the model reads without touching the
-conversation you see.
+A DSH bundle for plain conversation: a selectable **Pure chat** agent preset
+with web access and document export, plus a clear-context control and a question
+jumper.
 
-**Quick start**
+| Feature | What it does |
+|---|---|
+| Pure chat preset | The conversation goes straight to the model; no system prompt, no host tools. |
+| `web_search` / `web_fetch` | Search the web, or fetch one URL as text. |
+| `write_file` | Save text as txt, md, doc, xls or pdf. |
+| Clear context | A composer button: the model starts fresh, the transcript stays. |
+| Question jumper | A session-header dropdown: jump to any earlier question. |
 
-1. Create a session and choose **Pure chat** in the preset control (it reads
-   **纯对话** on a Chinese system).
-2. Ask anything. Add “查一下 …” if you want it to search the web.
-3. Say “export that as PDF / Excel / Word” to get a file.
-
-The preset offers four independent capabilities: plain chat, web access,
-document export, and clearing the context. Each one has its own section below.
+**Quick start**: create a session → choose **Pure chat** (or **纯对话** on a
+Chinese system) → ask. Add “查一下 …” to search, or “export that as PDF” to get a
+file.
 
 ```sh
 # install (npm, after the package is published)
@@ -95,6 +94,20 @@ refuses while a turn is still running and reports “already empty” when there
 nothing to clear.
 
 The same operation is available as the `/clear-context` command.
+
+### Question jumper
+
+A dropdown in the session header lists the opening characters of every question
+in the loaded transcript; picking one scrolls the Chat view to that message.
+
+- Each row shows the Turn number and the first 10 characters of the question,
+  taken from the host's own Turn navigation projection — every listed entry has a
+  loaded row to land on.
+- Keyboard: arrows move through the list, Home/End jump to its ends, Escape
+  closes, Enter picks.
+- It is a client feature, so it appears in every session, not only in this
+  preset. It replaces the standalone `dsh-question-jumper` plugin: remove that
+  bundle if it is still installed.
 
 ## How it works
 

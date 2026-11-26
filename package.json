@@ -1,8 +1,8 @@
 {
   "name": "dsh-pure-chat",
-  "version": "1.4.2",
+  "version": "1.5.0",
   "type": "module",
-  "description": "Pure chat: a selectable DSH agent preset that sends the conversation straight to the model, plus a file-writing tool (txt, md, doc, xls, pdf) and a clear-context control, with web search and fetch but without a system prompt, file or shell tools, skills, or subagents.",
+  "description": "Pure chat: a selectable DSH agent preset that sends the conversation straight to the model, plus file export (txt, md, doc, xls, pdf), a clear-context control, and a question jumper in the session header, with web search and fetch but without a system prompt, file or shell tools, skills, or subagents.",
   "license": "MIT",
   "author": "EonCosmos",
   "repository": {
@@ -25,7 +25,8 @@
     "agent-preset",
     "chat",
     "web-search",
-    "document-export"
+    "document-export",
+    "navigation"
   ],
   "exports": {
     ".": "./index.js",
@@ -60,7 +61,9 @@
       "platform": "web",
       "immediately": true,
       "inject": [
-        "@deepseek-ai/dsh-client-ui-conversation"
+        "@deepseek-ai/dsh-client-locale",
+        "@deepseek-ai/dsh-client-ui-conversation",
+        "@deepseek-ai/dsh-client-ui-renderer"
       ]
     }
   }

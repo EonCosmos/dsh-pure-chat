@@ -1,5 +1,18 @@
 # Changelog
 
+## 1.5.0
+
+- Merged the question-jumper plugin into this bundle: the session-header
+  dropdown that lists each question's opening characters and scrolls the Chat
+  view to it now ships in this package's client module, under the same slot id
+  (`question-jumper`, order -20), so it replaces the standalone plugin. Remove
+  `dsh-question-jumper` if it is still installed.
+- The client module registers both controls (clear context and the question
+  jumper) plus one locale dictionary, and now requires
+  `@deepseek-ai/dsh-client-locale` and `@deepseek-ai/dsh-client-ui-renderer`
+  beside `@deepseek-ai/dsh-client-ui-conversation`.
+- The README opening is now a short feature table and a one-line quick start.
+
 ## 1.4.2
 
 - Documentation only: clear context is presented as its own capability instead of

@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "Pure chat",
-    "description": "Adds a selectable agent preset that sends your conversation straight to the model with three tools of its own: web_search and web_fetch for current information, and write_file to save text as txt, md, doc, xls or pdf inside the session working directory. It carries no system prompt and mounts no file, shell, terminal, skill, subagent, team, or goal tools, and it keeps hiding host-global tools that register later. Beyond the tools, an independent clear-context control left of the send button resets what the model reads while the transcript stays untouched. The preset is listed as “Pure chat”, or “纯对话” on a Chinese system. PDF export uses the deployment's Office component, long conversations are not compacted, and a preset that cannot hide a host-global tool refuses to activate instead of starting with it.",
+    "description": "Adds a selectable agent preset that sends your conversation straight to the model with three tools of its own: web_search and web_fetch for current information, and write_file to save text as txt, md, doc, xls or pdf inside the session working directory. It carries no system prompt and mounts no file, shell, terminal, skill, subagent, team, or goal tool. Two client features come with it: an independent clear-context control left of the send button resets what the model reads while the transcript stays untouched, and a question jumper in the session header scrolls to any earlier question. The preset is listed as “Pure chat”, or “纯对话” on a Chinese system. PDF export uses the deployment's Office component, and long conversations are not compacted.",
     "detail": "docs/DETAIL.md"
   }
 }
