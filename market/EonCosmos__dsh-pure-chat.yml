@@ -1,0 +1,9 @@
+# Copy this file to awesome-dsh-plugin as data/plugins/EonCosmos__dsh-pure-chat.yml
+# The filename must keep the owner's case: the catalog slug preserves it.
+url: https://github.com/EonCosmos/dsh-pure-chat
+name: EonCosmos/dsh-pure-chat
+category: ui
+icon: https://raw.githubusercontent.com/EonCosmos/dsh-pure-chat/main/icon.png
+description:
+  en: 'Adds a plain-chat agent preset with web search, file export, a clear-context control and a question jumper, and hides every host-global tool from it.'
+  zh: '增加一个纯对话预设：可联网搜索、导出 txt/md/doc/xls/pdf，输入框有清空上下文按钮，会话头部有跳转到提问；预设会隐藏全部宿主全局工具。'
