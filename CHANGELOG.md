@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.5.2
+
+- The package icon is now `icon.png` (180×180 PNG, transparent background),
+  rasterized from the previous `icon.svg` and exported as `./icon`. The vector
+  file is removed; the storefront catalog entry can point `icon:` at the same
+  PNG, which the listing requires to be a GitHub-hosted raster.
+
 ## 1.5.1
 
 - Added the marketplace screenshots: `docs/screenshots/01.png`–`03.png` are
