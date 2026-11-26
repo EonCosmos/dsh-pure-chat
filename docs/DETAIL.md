@@ -8,4 +8,4 @@ Two more independent features: **clear context** (a composer button that resets 
 
 The preset is listed as **Pure chat**, or **纯对话** on a Chinese system.
 
-![Pure chat: conversation, web tools, file export, clear context, and the question jumper](preview.svg)
+![Pure chat in a DSH session: the composer with its tools and the clear-context control, and the question jumper in the session header](screenshots/01.png)

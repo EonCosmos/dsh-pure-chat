@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.5.1
+
+- Added the marketplace screenshots: `docs/screenshots/01.png`–`03.png` are
+  declared in `screenshots.json` at the package root, the file storefronts read,
+  and the package ships them for npm installs.
+- The Plugins detail document now shows the real interface instead of the
+  hand-drawn illustration, and that illustration is removed.
+
 ## 1.5.0
 
 - Merged the question-jumper plugin into this bundle: the session-header
