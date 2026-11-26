@@ -1,11 +1,15 @@
 # Pure chat (纯对话)
 
-A DSH agent preset for plain conversation: the dialogue goes straight to the model with three tools — web search, page fetch, and file export.
+A plain-chat preset with web search, file export, a clear-context control and a question jumper.
 
-**Three steps**: create a session → choose “Pure chat” → ask. For a file, say “export that as PDF / Excel / Word”.
+| Feature | What it does |
+|---|---|
+| Plain chat preset | The conversation goes straight to the model; no system prompt, no host tools. |
+| `web_search` / `web_fetch` | Search the web, or fetch one URL as text. |
+| `write_file` | Save text as txt, md, doc, xls or pdf. |
+| Clear context | A composer button: the model starts fresh, the transcript stays. |
+| Question jumper | A session-header dropdown: jump to any earlier question. |
 
-Two more independent features: **clear context** (a composer button that resets what the model reads while the transcript stays) and the **question jumper** (a session-header dropdown that scrolls to any earlier question).
-
-The preset is listed as **Pure chat**, or **纯对话** on a Chinese system.
+**Three steps**: create a session → choose “Pure chat” → ask.
 
 ![Pure chat in a DSH session: the composer with its tools and the clear-context control, and the question jumper in the session header](screenshots/01.png)

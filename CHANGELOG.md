@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.5.4
+
+- The Plugins detail page now reads like the README: one summary line, the
+  five-row feature table, one quick-start line and the screenshot. The localized
+  description is trimmed to two sentences that keep the PDF requirement.
+
 ## 1.5.3
 
 - Storefront screenshots are re-encoded in place: 1.16 MB → 533 KB (54% smaller)

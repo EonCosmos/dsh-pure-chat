@@ -1,6 +1,6 @@
 {
   "name": "dsh-pure-chat",
-  "version": "1.5.3",
+  "version": "1.5.4",
   "type": "module",
   "description": "Pure chat: a selectable DSH agent preset that sends the conversation straight to the model, plus file export (txt, md, doc, xls, pdf), a clear-context control, and a question jumper in the session header, with web search and fetch but without a system prompt, file or shell tools, skills, or subagents.",
   "license": "MIT",
