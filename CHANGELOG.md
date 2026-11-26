@@ -5,6 +5,8 @@
 - Storefront screenshots are re-encoded in place: 1.16 MB → 533 KB (54% smaller)
   with unchanged dimensions and PSNR 45–52 dB against the originals, so nothing
   visible changes.
+- `01.png` was then replaced with a newer 1887×1079 capture and optimized the
+  same way, 285 KB → 117 KB at PSNR 50.7 dB.
 
 ## 1.5.2
 
